@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ViewmodelApp</string>
+    <string name="text_angka">0</string>
+    <string name="button">Add+1</string>
+</resources>
