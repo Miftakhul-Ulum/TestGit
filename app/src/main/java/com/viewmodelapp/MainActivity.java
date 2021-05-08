@@ -1,6 +1,7 @@
 package com.viewmodelapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -24,17 +25,24 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.textView);
         button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(v -> addAngka());
+        mainViewModel.getAngka().observe(this, new Observer<Integer>() {
             @Override
-            public void onClick(View v) {
-                addAngka();
+            public void onChanged(Integer integer) {
+                textView.setText(String.valueOf(integer));
             }
         });
-        textView.setText(String.valueOf(mainViewModel.setAngka()));
-    }
 
+
+//      lifecicle tanpa kelas mutablelivedata
+//        textView.setText(String.valueOf(mainViewModel.setAngka()));
+//    }
+//
+//    public void addAngka(){
+//        mainViewModel.addAngka();
+//        textView.setText(String.valueOf(mainViewModel.setAngka()));
+    }
     public void addAngka(){
         mainViewModel.addAngka();
-        textView.setText(String.valueOf(mainViewModel.setAngka()));
     }
 }
